@@ -18,6 +18,7 @@
 .logintext {
     font-family: Inter-Bold;
     font-size: 20px;
+    color: #ffffff;
 }
 
 .deletetext {
@@ -43,6 +44,7 @@ input[type="text"] {
     border: none;
     outline: none;
     opacity: 0.5;
+    color: #D9D9D9;
 }
 
 input[type="password"] {
@@ -52,4 +54,5 @@ input[type="password"] {
     border: none;
     outline: none;
     opacity: 0.5;
+    color: #D9D9D9;
 }
