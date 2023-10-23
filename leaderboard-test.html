@@ -4,39 +4,66 @@
     <title>Leaderboard</title>
 </head>
 <body>
-    <h1>Leaderboard</h1>
-
-    <table id="leaderboardTable">
+    <table>
         <thead>
             <tr>
-                <th>Rank</th>
-                <th>Username</th>
+                <th>ID</th>
                 <th>Score</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody id="result"></tbody>
     </table>
 
     <script>
-        // Fetch data from the URL
-        fetch("https://cosmic-backend.nighthawkcodingsociety.com/api/leaderboard/")
-            .then(response => response.json())
-            .then(data => {
-                const leaderboardTable = document.getElementById("leaderboardTable");
-                const tbody = leaderboardTable.querySelector("tbody");
+        const resultContainer = document.getElementById("result");
 
-                data.forEach(entry => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${entry.rank}</td>
-                        <td>${entry.username}</td>
-                        <td>${entry.score}</td>
-                    `;
-                    tbody.appendChild(row);
+        const url = "https://cosmic-backend.nighthawkcodingsociety.com/api/leaderboard/";
+        const headers = {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'default',
+            credentials: 'omit',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        };
+
+        // Fetch data from the leaderboard API
+        fetch(url, headers)
+            .then(response => {
+                if (response.status !== 200) {
+                    const errorMsg = 'API response error: ' + response.status;
+                    console.log(errorMsg);
+                    const tr = document.createElement("tr");
+                    const td = document.createElement("td");
+                    td.innerHTML = errorMsg;
+                    tr.appendChild(td);
+                    resultContainer.appendChild(tr);
+                    return;
+                }
+                response.json().then(data => {
+                    for (const row of data) {
+                        const tr = document.createElement("tr");
+                        const id = document.createElement("td");
+                        const score = document.createElement("td");
+
+                        id.innerHTML = row.id;
+                        score.innerHTML = row.score;
+
+                        tr.appendChild(id);
+                        tr.appendChild(score);
+
+                        resultContainer.appendChild(tr);
+                    }
                 });
             })
-            .catch(error => {
-                console.error("Error fetching data:", error);
+            .catch(err => {
+                console.error(err);
+                const tr = document.createElement("tr");
+                const td = document.createElement("td");
+                td.innerHTML = err;
+                tr.appendChild(td);
+                resultContainer.appendChild(tr);
             });
     </script>
 </body>
