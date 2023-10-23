@@ -5,26 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classes</title>
-    <link rel="stylesheet" href="./assets/styleuitest.css">
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body class = "body" onload="resize();">
-    <div id="login" style="opacity:1;pointer-events: all;">
-        <img    id="loginbox"               src="./assets/svg/loginbox.svg" alt="loginbox" class = "loginbox" width="600" height="729" style="position:absolute;left:660px;top:175px;">
-        
-        <div    id="loginUsernameText"      class="logintext" style="position:absolute;left:712px;top:363px;">Username</div>
-        <img    id="loginUsernameIcon"      src="./assets/svg/usernameicon.svg" alt="unicon" class = "unicon" width="20" height="24" style="position:absolute;left:722px;top:393px;">
-        <input  id="loginUsername"          type="text" placeholder="Type your username" style="position:absolute;left:753px;top:393px;">
-        <img    id="loginUsernameUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:427px;">
-
-        <div    id="loginPasswordText"      class="logintext" style="position:absolute;left:712px;top:503px;">Password</div>
-        <img    id="loginPasswordIcon"      src="./assets/svg/passwordicon.svg" alt="pwicon" class = "pwicon" width="20" height="24" style="position:absolute;left:722px;top:533px;">
-        <input  id = "loginPassword"        type="password" placeholder="Type your password" style="position:absolute;left:753px;top:533px;">
-        <img    id="loginPasswordUnderbar"  src="./assets/svg/underbar.svg" alt="underbar" class = "underbar" width="496" height="7" style="position:absolute;left:712px;top:567px;">
-
-        <img    id="loginButton"            src="./assets/svg/loginbutton.svg" alt="loginbutton" class = "loginbutton" width="448" height="50" style="position:absolute;left:736px;top:644px;" onclick="auth('loginUsername', 'loginPassword')">
-
-        <div    id="goToSignupText"         class="using" style="position:absolute;left:880px;top:763px;opacity:0.75;">Or sign up using</div>
-        <div    id="goToSignUp"             class="using" style="position:absolute;left:919px;top:807px;" onclick="switchPage('login','signup')">SIGN UP</div>
+    <div id="index" style="opacity:1;pointer-events: all;">
+        <div class="maintext" style="position: absolute;left: 50%;top: 362px;">POJECT NAME</div>
     </div>
 </body>
 <script>
@@ -62,11 +47,11 @@ function dynamic_imgSize(idName, originalWidth, originalHeight, originalLeft, or
 window.onresize = resize;
 function resize () {
     var current = window.innerWidth;
-    var size = window.innerWidth/1920;
+    var size = window.innerWidth/1440;
 
     dynamic_TextSize("logintext", 20, size);
     dynamic_TextSize("using", 20, size);
-    dynamic_TextSize("maintext", 20, size);
+    dynamic_TextSize("maintext", 84, size);
 
     //login
     dynamic_imgSize("loginbox", 600, 729, 660, 175, size);
