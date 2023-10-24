@@ -9,7 +9,7 @@
 </head>
 <body class = "body" onload="resize();">
     <!-- MAIN LANDING PAGE -->
-    <div id="main" style="opacity:1;pointer-events: all;">
+    <div id="main" style="opacity:0;pointer-events: none;">
         <div class="maintext" id="indexMain" style="position: absolute;top: 362px;left: 410px;">PROJECT NAME</div> <!-- subject to change based off of decided name -->
         <img id="indexStartBtn" width="306" height="107" style="position: absolute;left: 567px;top: 474px;" src="./assets/svg/startBtn.svg" onclick="switchPage()"> <!-- should switch directly to signin -->
         <img id="indexNebula1" width="316" height="317" style="position: absolute;left: 53px;top: 455px;" src="./assets/svg/nebula1.svg">
@@ -21,6 +21,10 @@
             <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg">
             <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg">
         </div>
+    </div>
+    <div id="login" style="opacity:1;pointer-events: all;">
+        <img id="loginTxt" width="253" height="101" style="position: absolute;left: 593px;top: 92px;" src="./assets/svg/loginText.svg">
+        <img id="loginBox" width="732" height="535" style="position: absolute;left: 354px;top: 201px;" src="./assets/svg/loginbox.svg">
     </div>
 </body>
 <script>
