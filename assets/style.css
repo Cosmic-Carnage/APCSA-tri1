@@ -42,8 +42,8 @@ input[type="text"] {
     background: transparent;
     border: none;
     outline: none;
-    opacity: 0.5;
-    color: #D9D9D9;
+    opacity: 1;
+    color: #1D0D33;
 }
 
 input[type="password"] {
@@ -52,6 +52,6 @@ input[type="password"] {
     background: transparent;
     border: none;
     outline: none;
-    opacity: 0.5;
-    color: #D9D9D9;
+    opacity: 1;
+    color: #1D0D33;
 }
