@@ -34,10 +34,34 @@
     </div>
 </body>
 <script>
+function fade(element) {
+var op = 1;  // initial opacity
+var timer = setInterval(function () {
+    if (op <= 0.1){
+        clearInterval(timer);
+        document.getElementById(element).style.opacity = 0;
+        return;
+    }
+    document.getElementById(element).style.opacity = op;
+    op -= op * 0.1;
+}, 10);
+}
+function unfade(element) {
+    var op = 0.1;
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        document.getElementById(element).style.opacity = op;
+        op += op * 0.1;
+    }, 10);
+}
 function switchPage(current, page) {
-    document.getElementById(current).style.opacity = "0";
-    document.getElementById(current).style.pointerEvents = "none";
-    document.getElementById(page).style.opacity = "1";
-    document.getElementById(page).style.pointerEvents = "all";
+    fade(current);
+    unfade(page);
+    // document.getElementById(current).style.opacity = "0";
+    // document.getElementById(current).style.pointerEvents = "none";
+    // document.getElementById(page).style.opacity = "1";
+    // document.getElementById(page).style.pointerEvents = "all";
 }
 </script>
