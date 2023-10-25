@@ -5,67 +5,36 @@
     <meta name="interest-cohort" content="()"/>
 </head>
 <body>
-    <table>
+    <table id="leaderboardTable">
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Leaderboard</th>
                 <th>Score</th>
             </tr>
         </thead>
-        <tbody id="result"></tbody>
+        <tbody></tbody>
     </table>
 
     <script>
-        const resultContainer = document.getElementById("result");
+        // fetch data from the backend URL
+        fetch("https://cosmic-backend.nighthawkcodingsociety.com/api/leaderboard/")
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector("#leaderboardTable tbody");
 
-        const url = "https://cosmic-backend.nighthawkcodingsociety.com/api/leaderboard/";
-        const headers = {
-            method: 'GET',
-            mode: 'cors',
-            cache: 'default',
-            credentials: 'omit',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        };
+                data.forEach(item => {
+                    const row = tableBody.insertRow();
+                    const idCell = row.insertCell(0);
+                    const leaderboardCell = row.insertCell(1);
+                    const scoreCell = row.insertCell(2);
 
-        // Fetch data from the leaderboard API
-        fetch(url, headers)
-            .then(response => {
-                if (response.status !== 200) {
-                    const errorMsg = 'API response error: ' + response.status;
-                    console.log(errorMsg);
-                    const tr = document.createElement("tr");
-                    const td = document.createElement("td");
-                    td.innerHTML = errorMsg;
-                    tr.appendChild(td);
-                    resultContainer.appendChild(tr);
-                    return;
-                }
-                response.json().then(data => {
-                    for (const row of data) {
-                        const tr = document.createElement("tr");
-                        const id = document.createElement("td");
-                        const score = document.createElement("td");
-
-                        id.innerHTML = row.id;
-                        score.innerHTML = row.score;
-
-                        tr.appendChild(id);
-                        tr.appendChild(score);
-
-                        resultContainer.appendChild(tr);
-                    }
+                    idCell.textContent = item.id;
+                    leaderboardCell.textContent = item.leaderboard;
+                    scoreCell.textContent = item.score;
                 });
             })
-            .catch(err => {
-                console.error(err);
-                const tr = document.createElement("tr");
-                const td = document.createElement("td");
-                td.innerHTML = err;
-                tr.appendChild(td);
-                resultContainer.appendChild(tr);
-            });
+            .catch(error => console.error("Error fetching data: ", error));
     </script>
 </body>
 </html>
