@@ -44,10 +44,17 @@
         <input id="signupPwInput" type="password" placeholder="PASSWORD" style="position:absolute;left: 590px;top: 629px">
         <img id="loginGo" width="90" height="56" style="position: absolute;left: 675px;top: 693px;" src="./assets/svg/loginGo.svg" onclick="auth()">
     </div>
-    <div id="game" style="opacity:1;pointer-events: all;">
+    <div id="game" style="opacity:0;pointer-events: none;">
         <img id="gameWindow" width="1280" height="546" style="position: absolute;left: 81px;top: 201px;" src="./assets/svg/gamewindow.svg">
         <img id="gameDialouge" width="1019" height="120" style="position: absolute;left: 211px;top: 563px; text-align: center;" src="./assets/svg/gamedialouge.svg">
         <div id="gameDialougeText"style="position: absolute;left: 211px;top: 563px; text-align: center; line-height:120px; height: 120px; width: 1019px;">Game dialogue and text goes here. This text will be removed before release</div>
+    </div>
+    <div id="leaderboard" style="opacity:1;pointer-events: all;">
+        <img id="lbWindow" width="732" height="596" style="position: absolute;left: 354px;top: 201px;" src="./assets/svg/signupbox.svg">
+        <img id="lbText" width="601" height="101" style="position: absolute;left: 420px;top: 92px;" src="./assets/svg/leaderboardText.svg">
+        <div id="lbEntry1">
+            <img id="lbEntry1Box" width="526" height="56" style="position: absolute;left: 436px;top: 240px;" src="./assets/svg/leaderboardEntry.svg"> <!-- implement adding new rows based off of entries up to a set amount -->
+        </div>
     </div>
 </body>
 <script>
