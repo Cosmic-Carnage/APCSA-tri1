@@ -9,6 +9,7 @@
     background-size: cover;
     cursor: default;
     font-family: Archive;
+    background-attachment: fixed;
 }
 
 .logintext {
