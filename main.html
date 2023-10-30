@@ -9,7 +9,7 @@
 </head>
 <body class = "body" onload="resize();">
     <!-- MAIN LANDING PAGE -->
-    <div id="main" style="opacity:0;pointer-events: none;">
+    <div id="main" style="opacity:1;pointer-events: all;">
         <div class="maintext" id="indexMain" style="position: absolute;top: 362px;left: 410px;">PROJECT NAME</div> <!-- subject to change based off of decided name -->
         <img id="indexStartBtn" width="306" height="107" style="position: absolute;left: 567px;top: 474px;" src="./assets/svg/startBtn.svg" onclick="switchPage('main', 'login')"> <!-- should switch directly to signin -->
         <img id="indexNebula1" width="316" height="317" style="position: absolute;left: 53px;top: 455px;" src="./assets/svg/nebula1.svg">
@@ -30,7 +30,7 @@
         <img id="loginPw" width="451" height="56" style="position: absolute;left: 495px;top: 536px;" src="./assets/svg/loginPassword.svg">
         <input id="loginUnameInput" type="text" placeholder="USERNAME" style="position:absolute;left: 590px;top: 472px">
         <input id="loginPwInput" type="password" placeholder="PASSWORD" style="position:absolute;left: 590px;top: 551px">
-        <img id="loginGo" width="90" height="56" style="position: absolute;left: 675px;top: 614px;" src="./assets/svg/loginGo.svg" onclick="auth()">
+        <img id="loginGo" width="90" height="56" style="position: absolute;left: 675px;top: 614px;" src="./assets/svg/loginGo.svg" onclick="auth('loginUnameInput', 'loginPwInput')">
     </div>
     <div id="signup" style="opacity:0;pointer-events: none;">
         <img id="signupTxt" width="303" height="101" style="position: absolute;left: 563px;top: 92px;" src="./assets/svg/signupText.svg">
@@ -58,7 +58,7 @@
             <div id="lbEntry1BoxScore" style="position: absolute;left: 885px;top: 257px; text-align: center; line-height:21px; height: 21px; width: 60px;">1000</div>
         </div>
     </div>
-    <div id="spacebook" style="opacity:1;pointer-events: all;">
+    <div id="spacebook" style="opacity:0;pointer-events: none;">
         <img id="sbTxt" width="487" height="101" style="position: absolute;left: 476px;top: 92px;" src="./assets/svg/spacebookText.svg">
         <div id="sbTile1">
             <img id="sbTile1Tile" width="216" height="216" style="position: absolute;left: 347px;top: 236px;" src="./assets/svg/spacebookTile.svg"> <!-- implement adding new tiles based off of entries -->
@@ -110,5 +110,54 @@ function switchPage(current, page) {
     unfade(page);
     document.getElementById(current).style.pointerEvents = "none";
     document.getElementById(page).style.pointerEvents = "all";
+}
+</script>
+
+<script>
+    
+function auth(unID, pwID) {
+    username = document.getElementById(unID).value;
+    password = document.getElementById(pwID).value;
+    console.log(username);
+    console.log(password);
+    const body = {
+        email: username,
+        password: password
+    };
+    console.log(body);
+    const read_options = {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        body: JSON.stringify(body),
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+    };
+    // fetch the data from API
+    fetch("https://cosmic-backend.stu.nighthawkcodingsociety.com/authenticate", read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+            // check for response errors
+            if (response.status !== 200) {
+                const errorMsg = 'Database read error: ' + response.status;
+                return;
+            }
+            // valid response will have json data
+            response.json().then(data => {
+            if (data !== null) {
+                console.log(data)
+            }
+            else {
+                console.log("invalid login credentials")
+            }
+        })
+    })
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
+    });
 }
 </script>
