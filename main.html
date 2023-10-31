@@ -133,7 +133,8 @@ function auth(unID, pwID) {
         credentials: 'omit', // include, *same-origin, omit
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': '*'
         },
     };
     // fetch the data from API
