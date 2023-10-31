@@ -19,7 +19,7 @@
         <div id="mainNav">
             <img id="indexTeamBtn" width="121" height="52" style="position: absolute;left: 367px;top: 62px; opacity: 0.75;" src="./assets/svg/teamBtn.svg">
             <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg" onclick="switchPage('main', 'leaderboard')">
-            <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg">
+            <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg" onclick="switchPage('main', 'game')">
         </div>
     </div>
     <div id="login" style="opacity:0;pointer-events: none;">
@@ -256,5 +256,11 @@ function resize() {
     dynamic_TextSizeByID("lbEntry1BoxName", 20, size);
     dynamic_divSize("lbEntry1BoxScore", 60, 21, 885, 257, size);
     dynamic_TextSizeByID("lbEntry1BoxScore", 20, size);
+
+    // GAME //
+    dynamic_imgSize("gameWindow", 1280, 546, 81, 201, size);
+    dynamic_imgSize("gameDialouge", 1019, 120, 211, 563, size);
+    dynamic_divSize("gameDialougeText", 1019, 120, 211, 563, size);
+    dynamic_TextSizeByID("gameDialougeText", 20, size);
 }
 </script>
