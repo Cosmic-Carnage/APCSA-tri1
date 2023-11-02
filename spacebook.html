@@ -13,24 +13,37 @@
 
     <script>
     document.getElementById("uploadForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-
         const form = new FormData(this);
+        
+        const data = JSON.stringify({
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            body: form,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': '*'
+            },
+        });
 
         const xhr = new XMLHttpRequest();
-        
+        xhr.withCredentials = false;
+
         xhr.addEventListener('readystatechange', function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log("Image request successful!");
-                } else {
-                    console.error("Image request failed with status: " + xhr.status);
-                }
+            if (xhr.status === 200) {
+                console.log("Image request successful!");
+            } else {
+                console.error("Image request failed with status: " + xhr.status);
             }
         });
 
         xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
-        xhr.send(form);
+
+        xhr.send(data);
+
+        
     });
     </script>
 </body>
