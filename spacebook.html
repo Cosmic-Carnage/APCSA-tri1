@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Image</title>
+</head>
+<body>
+    <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <input type="file" name="image" accept=".jpg, .png, .gif">
+        <input type="text" name="fileName" placeholder="Enter file name">
+        <input type="submit" value="Upload Image">
+    </form>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const form = new FormData(this);
+
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Define the HTTP method and the URL
+            xhr.open("GET", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
+
+            // Set CORS headers
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+            // Handle the response
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log("Image request successful!");
+                } else {
+                    console.error("Image request failed with status: " + xhr.status);
+                }
+            };
+
+            // Send the request
+            xhr.send(form);
+        });
+    </script>
+</body>
+</html>
