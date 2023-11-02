@@ -12,8 +12,9 @@
 
     <script>
     var data = new FormData();
-    data.append("fileName", "aws");
-    data.append("image", fileInput.files[0], "/C:/Users/etran/OneDrive/Pictures/Screenshots/aws_logo.png");
+    var data = new FormData();
+    data.append("fileName", "stars");
+    data.append("image", fileInput.files[0], "/C:/Users/etran/OneDrive/Pictures/Screenshots/stars.png");
     
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -26,7 +27,7 @@
 
     xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image");
 
-    xhr.send(data);
+xhr.send(data);
     </script>
 </body>
 </html>
