@@ -11,39 +11,23 @@
     </form>
 
     <script>
-    document.getElementById("uploadForm").addEventListener("submit", function (event) {
-        const form = new FormData(this);
-        
-        const data = JSON.stringify({
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-            credentials: 'omit', // include, *same-origin, omit
-            body: form,
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': '*'
-            },
-        });
+    var data = new FormData();
+    data.append("fileName", "aws");
+    data.append("image", fileInput.files[0], "/C:/Users/etran/OneDrive/Pictures/Screenshots/aws_logo.png");
+    
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-        const xhr = new XMLHttpRequest();
-        xhr.withCredentials = false;
-
-        xhr.addEventListener('readystatechange', function () {
-            if (xhr.status === 200) {
-                console.log("Image request successful!");
-            } else {
-                console.error("Image request failed with status: " + xhr.status);
-            }
-        });
-
-        xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
-
-        xhr.send(data);
-
-        
+    xhr.addEventListener("readystatechange", function() {
+    if(this.readyState === 4) {
+        console.log(this.responseText);
+    }
     });
+
+    xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image");
+
+    xhr.send(data);
     </script>
 </body>
 </html>
+
