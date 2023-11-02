@@ -18,14 +18,14 @@
         <!-- NAVBAR FOR THE MAIN PAGE -->
         <div id="mainNav">
             <img id="indexTeamBtn" width="121" height="52" style="position: absolute;left: 367px;top: 62px; opacity: 0.75;" src="./assets/svg/teamBtn.svg">
-            <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg">
-            <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg">
+            <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg" onclick="switchPage('main', 'leaderboard')">
+            <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg" onclick="switchPage('main', 'game')">
         </div>
     </div>
     <div id="login" style="opacity:0;pointer-events: none;">
         <img id="loginTxt" width="253" height="101" style="position: absolute;left: 593px;top: 92px;" src="./assets/svg/loginText.svg">
         <img id="loginBox" width="732" height="535" style="position: absolute;left: 354px;top: 201px;" src="./assets/svg/loginbox.svg">
-        <img id="loginNebula" width="169" height="169" style="position: absolute;left: 636px;top: 252px;" src="./assets/svg/nebula1.svg">
+        <img id="loginNebula" width="169" height="169" style="position: absolute;left: 636px;top: 252px;" src="./assets/svg/nebula1.svg" onclick="switchPage('login', 'signup')">
         <img id="loginUname" width="451" height="56" style="position: absolute;left: 495px;top: 457px;" src="./assets/svg/loginUsername.svg">
         <img id="loginPw" width="451" height="56" style="position: absolute;left: 495px;top: 536px;" src="./assets/svg/loginPassword.svg">
         <input id="loginUnameInput" type="text" placeholder="USERNAME" style="position:absolute;left: 590px;top: 472px">
@@ -35,14 +35,14 @@
     <div id="signup" style="opacity:0;pointer-events: none;">
         <img id="signupTxt" width="303" height="101" style="position: absolute;left: 563px;top: 92px;" src="./assets/svg/signupText.svg">
         <img id="signupBox" width="732" height="596" style="position: absolute;left: 354px;top: 201px;" src="./assets/svg/signupbox.svg">
-        <img id="signupNebula" width="169" height="169" style="position: absolute;left: 636px;top: 252px;" src="./assets/svg/nebula1.svg">
+        <img id="signupNebula" width="169" height="169" style="position: absolute;left: 636px;top: 252px;" src="./assets/svg/nebula1.svg" onclick="switchPage('signup', 'login')">
         <img id="signupFname" width="451" height="56" style="position: absolute;left: 495px;top: 457px;" src="./assets/svg/loginUsername.svg">
         <img id="signupUname" width="451" height="56" style="position: absolute;left: 495px;top: 536px;" src="./assets/svg/loginUsername.svg">
         <img id="signupPw" width="451" height="56" style="position: absolute;left: 495px;top: 614px;" src="./assets/svg/loginPassword.svg">
-        <input id="signupUnameInput" type="text" placeholder="FULL NAME" style="position:absolute;left: 590px;top: 472px">
-        <input id="signupPwInput" type="text" placeholder="USERNAME" style="position:absolute;left: 590px;top: 551px">
+        <input id="signupFnameInput" type="text" placeholder="FULL NAME" style="position:absolute;left: 590px;top: 472px">
+        <input id="signupUnameInput" type="text" placeholder="USERNAME" style="position:absolute;left: 590px;top: 551px">
         <input id="signupPwInput" type="password" placeholder="PASSWORD" style="position:absolute;left: 590px;top: 629px">
-        <img id="loginGo" width="90" height="56" style="position: absolute;left: 675px;top: 693px;" src="./assets/svg/loginGo.svg" onclick="auth()">
+        <img id="signupGo" width="90" height="56" style="position: absolute;left: 675px;top: 693px;" src="./assets/svg/loginGo.svg" onclick="auth()">
     </div>
     <div id="game" style="opacity:0;pointer-events: none;">
         <img id="gameWindow" width="1280" height="546" style="position: absolute;left: 81px;top: 201px;" src="./assets/svg/gamewindow.svg">
@@ -68,18 +68,18 @@
                 <img id="sbTile1Cmt1" width="207" height="38" style="position: absolute;left: 351px;top: 518px;" src="./assets/svg/spacebookCommentBar.svg"> <!-- implement adding new tiles based off of entries -->
             </div>
         </div>
-        <div id="sbTile2"> <!-- remaining tiles are here for refrence only -->
-            <img id="sbTile2Tile" width="216" height="216" style="position: absolute;left: 614px;top: 236px;" src="./assets/svg/spacebookTile.svg"> <!-- implement adding new tiles based off of entries -->
-        </div>
-        <div id="sbTile3">
-            <img id="sbTile3Tile" width="216" height="216" style="position: absolute;left: 880px;top: 236px;" src="./assets/svg/spacebookTile.svg"> <!-- implement adding new tiles based off of entries -->
-        </div>
-        <div id="sbTile4">
-            <img id="sbTile4Tile" width="216" height="216" style="position: absolute;left: 347px;top: 722px;" src="./assets/svg/spacebookTile.svg"> <!-- implement adding new tiles based off of entries -->
-        </div>
-        <div id="sbTile5">
-            <img id="sbTile4Tile" width="216" height="216" style="position: absolute;left: 347px;top: 1208px;" src="./assets/svg/spacebookTile.svg"> <!-- implement adding new tiles based off of entries -->
-        </div>
+        <!-- <div id="sbTile2"> remaining tiles are here for refrence only -->
+            <!-- <img id="sbTile2Tile" width="216" height="216" style="position: absolute;left: 614px;top: 236px;" src="./assets/svg/spacebookTile.svg"> implement adding new tiles based off of entries -->
+        <!-- </div> -->
+        <!-- <div id="sbTile3"> -->
+            <!-- <img id="sbTile3Tile" width="216" height="216" style="position: absolute;left: 880px;top: 236px;" src="./assets/svg/spacebookTile.svg"> implement adding new tiles based off of entries -->
+        <!-- </div> -->
+        <!-- <div id="sbTile4"> -->
+            <!-- <img id="sbTile4Tile" width="216" height="216" style="position: absolute;left: 347px;top: 722px;" src="./assets/svg/spacebookTile.svg"> implement adding new tiles based off of entries -->
+        <!-- </div> -->
+        <!-- <div id="sbTile5"> -->
+            <!-- <img id="sbTile4Tile" width="216" height="216" style="position: absolute;left: 347px;top: 1208px;" src="./assets/svg/spacebookTile.svg"> implement adding new tiles based off of entries -->
+        <!-- </div> -->
     </div>
 </body>
 <script>
@@ -160,5 +160,117 @@ function auth(unID, pwID) {
     .catch(err => {
       console.error(err);
     });
+}
+
+
+</script>
+<script> // RESIZING
+function dynamic_TextPositioning(idName, originalLeft, originalTop, size) {
+    var element = document.getElementById(idName);
+    var element_Top = size * originalTop;
+    element.style.top = element_Top + "px";
+    var element_Left = size * originalLeft;
+    element.style.left = element_Left + "px";
+}
+function dynamic_TextSize(className, originalSize, size) {
+    var element_Font = size * originalSize;
+    var elements = document.getElementsByClassName(className);
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        element.style.fontSize = element_Font + "px";
+    }
+}
+function dynamic_TextSizeByID(idName, originalSize, size) {
+    var element_Font = size * originalSize;
+    var element = document.getElementById(idName);
+    element.style.fontSize = element_Font + "px";
+}
+function dynamic_imgSize(idName, originalWidth, originalHeight, originalLeft, originalTop, size) {
+    var element = document.getElementById(idName);
+    var element_Height = size * originalHeight;
+    element.style.height = element_Height + "px";
+    var element_Width = size * originalWidth;
+    element.style.width = element_Width + "px";
+    var element_Top = size * originalTop;
+    element.style.top = element_Top + "px";
+    var element_Left = size * originalLeft;
+    element.style.left = element_Left + "px";
+}
+function dynamic_divSize(idName, originalWidth, originalHeight, originalLeft, originalTop, size) {
+    var element = document.getElementById(idName);
+    var element_Height = size * originalHeight;
+    element.style.height = element_Height + "px";
+    element.style.lineHeight = element_Height + "px";
+    var element_Width = size * originalWidth;
+    element.style.width = element_Width + "px";
+    var element_Top = size * originalTop;
+    element.style.top = element_Top + "px";
+    var element_Left = size * originalLeft;
+    element.style.left = element_Left + "px";
+}
+
+window.onresize = resize;
+function resize() {
+    var size = window.innerWidth / 1440;
+    // MAIN //
+    dynamic_TextSize("maintext", 84, size);
+    dynamic_TextPositioning("indexMain", 410, 362, size);
+    dynamic_imgSize("indexStartBtn", 306, 107, 567, 474, size);
+    dynamic_imgSize("indexNebula1", 316, 317, 53, 455, size);
+    dynamic_imgSize("indexNebula2", 332, 317, 235, 34, size);
+    dynamic_imgSize("indexNebula3", 316, 317, 1084, 372, size);
+    dynamic_imgSize("indexTeamBtn", 121, 52, 367, 62, size);
+    dynamic_imgSize("indexLbBtn", 329, 52, 556, 62, size);
+    dynamic_imgSize("indexGameBtn", 129, 52, 953, 62, size);
+
+    // LOGIN //
+    dynamic_imgSize("loginTxt", 253, 101, 593, 92, size);
+    dynamic_imgSize("loginBox", 732, 535, 354, 201, size);
+    dynamic_imgSize("loginNebula", 169, 169, 636, 252, size);
+    dynamic_imgSize("loginUname", 451, 56, 495, 457, size);
+    dynamic_TextPositioning("loginUnameInput", 590, 472, size);
+    dynamic_TextSizeByID("loginUnameInput", 20, size);
+    dynamic_imgSize("loginPw", 451, 56, 495, 536, size);
+    dynamic_TextPositioning("loginPwInput", 590, 551, size);
+    dynamic_TextSizeByID("loginPwInput", 20, size);
+    dynamic_imgSize("loginGo", 90, 56, 675, 614, size);
+
+    // SIGNUP //
+    dynamic_imgSize("signupTxt", 303, 101, 563, 92, size);
+    dynamic_imgSize("signupBox", 732, 596, 354, 201, size);
+    dynamic_imgSize("signupNebula", 169, 169, 636, 252, size);
+    dynamic_imgSize("signupFname", 451, 56, 495, 457, size);
+    dynamic_imgSize("signupUname", 451, 56, 495, 536, size);
+    dynamic_imgSize("signupPw", 451, 56, 495, 614, size);
+    dynamic_TextPositioning("signupFnameInput", 590, 472, size);
+    dynamic_TextSizeByID("signupFnameInput", 20, size);
+    dynamic_TextPositioning("signupUnameInput", 590, 551, size);
+    dynamic_TextSizeByID("signupUnameInput", 20, size);
+    dynamic_TextPositioning("signupPwInput", 590, 629, size);
+    dynamic_TextSizeByID("signupPwInput", 20, size);
+    dynamic_imgSize("signupGo", 90, 56, 675, 693, size);
+
+    // LEADERBOARD //
+    dynamic_imgSize("lbWindow", 732, 596, 354, 201, size);
+    dynamic_imgSize("lbText", 601, 101, 420, 92, size);
+    dynamic_imgSize("lbEntry1Box", 526, 56, 436, 240, size);
+    dynamic_divSize("lbEntry1BoxName", 373, 21, 462, 257, size);
+    dynamic_TextSizeByID("lbEntry1BoxName", 20, size);
+    dynamic_divSize("lbEntry1BoxScore", 60, 21, 885, 257, size);
+    dynamic_TextSizeByID("lbEntry1BoxScore", 20, size);
+
+    // GAME //
+    dynamic_imgSize("gameWindow", 1280, 546, 81, 201, size);
+    dynamic_imgSize("gameDialouge", 1019, 120, 211, 563, size);
+    dynamic_divSize("gameDialougeText", 1019, 120, 211, 563, size);
+    dynamic_TextSizeByID("gameDialougeText", 20, size);
+
+    // SPACEBOOK //
+    dynamic_imgSize("sbTxt", 487, 101, 476, 92, size);
+    dynamic_imgSize("sbTile1Tile", 216, 216, 347, 236, size);
+    dynamic_imgSize("sbTile1Like", 52, 38, 349, 457, size);
+    dynamic_imgSize("sbTile1LikeBtn", 38, 38, 520, 460, size);
+    dynamic_imgSize("sbTile1Cmt1", 207, 38, 351, 518, size);
+    
 }
 </script>
