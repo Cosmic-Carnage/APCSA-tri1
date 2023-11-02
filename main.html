@@ -118,13 +118,10 @@ function switchPage(current, page) {
 function auth(unID, pwID) {
     username = document.getElementById(unID).value;
     password = document.getElementById(pwID).value;
-    console.log(username);
-    console.log(password);
     const body = {
         email: username,
         password: password
     };
-    console.log(body);
     const read_options = {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
@@ -142,7 +139,6 @@ function auth(unID, pwID) {
         // response is a RESTful "promise" on any successful fetch
         .then(response => {
             // check for response errors
-            console.log(response)
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
                 return;
@@ -209,9 +205,7 @@ function fetchLb() {
             // filter and log text based off moon entry
             // if moon entry is not found, log "moon not found"
             retdata = JSON.parse(retdata)
-            console.log(retdata)
             sortedRetdata = mergeSort(retdata, "score");
-            console.log(sortedRetdata)
             for (entry=0; entry<=6; entry++) {
                 player = sortedRetdata[entry]["leaderboard"]
                 score = sortedRetdata[entry]["score"]
@@ -219,7 +213,6 @@ function fetchLb() {
                 div.setAttribute("id", "lbEntry" + entry);
                 document.getElementById("leaderboard").appendChild(div);
 
-                console.log(document.getElementById("leaderboard"));
 
                 const childDiv1 = document.createElement("img");
                 document.getElementById("lbEntry" + entry).appendChild(childDiv1);
@@ -234,7 +227,6 @@ function fetchLb() {
                 const childDiv2 = document.createElement("div");
                 document.getElementById("lbEntry" + entry).appendChild(childDiv2);
                 childDiv2.setAttribute("id", "lbEntry" + entry + "BoxName");
-                console.log(document.getElementById("leaderboard"));
                 document.getElementById("lbEntry" + entry + "BoxName").style.position = "absolute";
                 document.getElementById("lbEntry" + entry + "BoxName").style.left = "462px";
                 document.getElementById("lbEntry" + entry + "BoxName").style.top = "calc(257px + " + entry + " * 78px)";
@@ -249,7 +241,6 @@ function fetchLb() {
                 const childDiv3 = document.createElement("lbEntry" + entry + "BoxName");
                 document.getElementById("lbEntry" + entry).appendChild(childDiv3);
                 childDiv3.setAttribute("id", "lbEntry" + entry + "BoxScore");
-                console.log(document.getElementById("leaderboard"));
                 document.getElementById("lbEntry" + entry + "BoxScore").style.position = "absolute";
                 document.getElementById("lbEntry" + entry + "BoxScore").style.left = "885px";
                 document.getElementById("lbEntry" + entry + "BoxScore").style.top = "calc(257px + " + entry + " * 78px)";
