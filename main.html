@@ -142,25 +142,20 @@ function auth(unID, pwID) {
         // response is a RESTful "promise" on any successful fetch
         .then(response => {
             // check for response errors
+            console.log(response)
             if (response.status !== 200) {
                 const errorMsg = 'Database read error: ' + response.status;
                 return;
             }
             // valid response will have json data
-            response.json().then(data => {
-            if (data !== null) {
-                console.log(data)
+            if (response.status == 200) {
+                console.log("login successful but someone's gotta teach me how to use jwts")
             }
             else {
                 console.log("invalid login credentials")
             }
         })
-    })
-    // catch fetch errors (ie ACCESS to server blocked)
-    .catch(err => {
-      console.error(err);
-    });
-}
+    }
 
 
 </script>
