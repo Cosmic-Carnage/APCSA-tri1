@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -12,32 +11,39 @@
     </form>
 
     <script>
-        document.getElementById("uploadForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const form = new FormData(this);
-
-            // Create a new XMLHttpRequest object
-            const xhr = new XMLHttpRequest();
-
-            // Define the HTTP method and the URL
-            xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
-
-            // Set CORS headers
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-
-            // Handle the response
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    console.log("Image request successful!");
-                } else {
-                    console.error("Image request failed with status: " + xhr.status);
-                }
-            };
-
-            // Send the request
-            xhr.send(form);
+    document.getElementById("uploadForm").addEventListener("submit", function (event) {
+        const form = new FormData(this);
+        
+        const data = JSON.stringify({
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'omit', // include, *same-origin, omit
+            body: form,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': '*'
+            },
         });
+
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+
+        xhr.addEventListener('readystatechange', function () {
+            if (xhr.status === 200) {
+                console.log("Image request successful!");
+            } else {
+                console.error("Image request failed with status: " + xhr.status);
+            }
+        });
+
+        xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
+
+        xhr.send(data);
+
+        
+    });
     </script>
 </body>
 </html>
