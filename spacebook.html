@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,26 +10,29 @@
         <input type="text" name="fileName" placeholder="Enter file name">
         <input type="submit" value="Upload Image">
     </form>
-
     <script>
-    var data = new FormData();
-    var data = new FormData();
-    data.append("fileName", "stars");
-    data.append("image", fileInput.files[0], "/C:/Users/etran/OneDrive/Pictures/Screenshots/stars.png");
-    
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
+        document.getElementById("uploadForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const form = new FormData(this);
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
 
-    xhr.addEventListener("readystatechange", function() {
-    if(this.readyState === 4) {
-        console.log(this.responseText);
-    }
-    });
+            // Define the HTTP method and the URL
+            xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image", true);
 
-    xhr.open("POST", "https://cosmic-backend.stu.nighthawkcodingsociety.com/image");
-
-xhr.send(data);
+            // Set CORS headers
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            // Handle the response
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    console.log("Image request successful!");
+                } else {
+                    console.error("Image request failed with status: " + xhr.status);
+                }
+            };
+            // Send the request
+            xhr.send(form);
+        });
     </script>
 </body>
 </html>
-
