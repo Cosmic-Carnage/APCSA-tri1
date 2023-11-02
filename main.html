@@ -52,11 +52,11 @@
     <div id="leaderboard" style="opacity:0;pointer-events: none;">
         <img id="lbWindow" width="732" height="596" style="position: absolute;left: 354px;top: 201px;" src="./assets/svg/signupbox.svg">
         <img id="lbText" width="601" height="101" style="position: absolute;left: 420px;top: 92px;" src="./assets/svg/leaderboardText.svg">
-        <div id="lbEntry1">
-            <img id="lbEntry1Box" width="526" height="56" style="position: absolute;left: 436px;top: 240px;" src="./assets/svg/leaderboardEntry.svg"> <!-- implement adding new rows based off of entries up to a set amount -->
-            <div id="lbEntry1BoxName" style="position: absolute;left: 462px;top: 257px; text-align: center; line-height:21px; height: 21px; width: 373px;">Player1</div>
-            <div id="lbEntry1BoxScore" style="position: absolute;left: 885px;top: 257px; text-align: center; line-height:21px; height: 21px; width: 60px;">1000</div>
-        </div>
+        <!-- <div id="lbEntry1"> -->
+            <!-- <img id="lbEntry1Box" width="526" height="56" style="position: absolute;left: 436px;top: 240px;" src="./assets/svg/leaderboardEntry.svg"> implement adding new rows based off of entries up to a set amount -->
+            <!-- <div id="lbEntry1BoxName" style="position: absolute;left: 462px;top: 257px; text-align: center; line-height:21px; height: 21px; width: 373px;">Player1</div> -->
+            <!-- <div id="lbEntry1BoxScore" style="position: absolute;left: 885px;top: 257px; text-align: center; line-height:21px; height: 21px; width: 60px;">1000</div> -->
+        <!-- </div> -->
     </div>
     <div id="spacebook" style="opacity:0;pointer-events: none;">
         <img id="sbTxt" width="487" height="101" style="position: absolute;left: 476px;top: 92px;" src="./assets/svg/spacebookText.svg">
@@ -138,7 +138,7 @@ function auth(unID, pwID) {
         },
     };
     // fetch the data from API
-    fetch("https://cosmic-backend.stu.nighthawkcodingsociety.com/authenticate", read_options)
+    fetch("https://cosmic-backend.stu.nighthawkcodingsociety.com/api/leaderboard/", read_options)
         // response is a RESTful "promise" on any successful fetch
         .then(response => {
             // check for response errors
@@ -156,6 +156,121 @@ function auth(unID, pwID) {
             }
         })
     }
+
+
+function mergeSort(arr, prop) {
+    // Base case
+    if (arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    // Recursive calls
+    let left = mergeSort(arr.slice(0, mid), prop);
+    let right = mergeSort(arr.slice(mid), prop);
+    return merge(left, right, prop);
+}
+
+function merge(left, right, prop) {
+    let result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex][prop] > right[rightIndex][prop]) { // Reverse the comparison
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
+        }
+    }
+
+    return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+
+
+function fetchLb() {
+    const data = JSON.stringify({
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': '*'
+        },
+    });
+
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+
+    xhr.addEventListener('readystatechange', function () {
+    	if (this.readyState === this.DONE) {
+    		retdata = this.responseText;
+            // filter and log text based off moon entry
+            // if moon entry is not found, log "moon not found"
+            retdata = JSON.parse(retdata)
+            console.log(retdata)
+            sortedRetdata = mergeSort(retdata, "score");
+            console.log(sortedRetdata)
+            for (entry=0; entry<=6; entry++) {
+                player = sortedRetdata[entry]["leaderboard"]
+                score = sortedRetdata[entry]["score"]
+                const div = document.createElement("div");
+                div.setAttribute("id", "lbEntry" + entry);
+                document.getElementById("leaderboard").appendChild(div);
+
+                console.log(document.getElementById("leaderboard"));
+
+                const childDiv1 = document.createElement("img");
+                document.getElementById("lbEntry" + entry).appendChild(childDiv1);
+                childDiv1.setAttribute("id", "lbEntry" + entry + "Box");
+                document.getElementById("lbEntry" + entry + "Box").width = "526";
+                document.getElementById("lbEntry" + entry + "Box").height = "56";
+                document.getElementById("lbEntry" + entry + "Box").style.position = "absolute";
+                document.getElementById("lbEntry" + entry + "Box").style.left = "436px";
+                document.getElementById("lbEntry" + entry + "Box").style.top = "calc(240px + " + entry + " * 78px)";
+                document.getElementById("lbEntry" + entry + "Box").src = "./assets/svg/leaderboardEntry.svg";
+
+                const childDiv2 = document.createElement("div");
+                document.getElementById("lbEntry" + entry).appendChild(childDiv2);
+                childDiv2.setAttribute("id", "lbEntry" + entry + "BoxName");
+                console.log(document.getElementById("leaderboard"));
+                document.getElementById("lbEntry" + entry + "BoxName").style.position = "absolute";
+                document.getElementById("lbEntry" + entry + "BoxName").style.left = "462px";
+                document.getElementById("lbEntry" + entry + "BoxName").style.top = "calc(257px + " + entry + " * 78px)";
+                document.getElementById("lbEntry" + entry + "BoxName").style.textAlign = "center";
+                document.getElementById("lbEntry" + entry + "BoxName").style.lineHeight = "21px";
+                document.getElementById("lbEntry" + entry + "BoxName").style.height = "21px";
+                document.getElementById("lbEntry" + entry + "BoxName").style.width = "373px";
+                document.getElementById("lbEntry" + entry + "BoxName").innerHTML = player;
+
+
+
+                const childDiv3 = document.createElement("lbEntry" + entry + "BoxName");
+                document.getElementById("lbEntry" + entry).appendChild(childDiv3);
+                childDiv3.setAttribute("id", "lbEntry" + entry + "BoxScore");
+                console.log(document.getElementById("leaderboard"));
+                document.getElementById("lbEntry" + entry + "BoxScore").style.position = "absolute";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.left = "885px";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.top = "calc(257px + " + entry + " * 78px)";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.textAlign = "center";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.lineHeight = "21px";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.height = "21px";
+                document.getElementById("lbEntry" + entry + "BoxScore").style.width = "60px";
+                document.getElementById("lbEntry" + entry + "BoxScore").innerHTML = score;
+            }
+            // for item in data['bodies'], check to see if text entry matches
+            // if it does, log the item
+            // if it doesn't, log "moon not found"
+    	}
+    });
+
+    xhr.open('GET', 'https://cosmic-backend.stu.nighthawkcodingsociety.com/api/leaderboard/');
+
+    xhr.send(data);
+
+    
+}
 
 
 </script>
