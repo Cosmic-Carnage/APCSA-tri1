@@ -7,7 +7,7 @@
     <title>Nebula</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body class = "body" onload="resize();">
+<body class = "body" onload="resize();fetchLb();">
     <!-- MAIN LANDING PAGE -->
     <div id="main" style="opacity:1;pointer-events: all;">
         <div class="maintext" id="indexMain" style="position: absolute;top: 362px;left: 410px;">PROJECT NAME</div> <!-- subject to change based off of decided name -->
@@ -18,7 +18,7 @@
         <!-- NAVBAR FOR THE MAIN PAGE -->
         <div id="mainNav">
             <img id="indexTeamBtn" width="121" height="52" style="position: absolute;left: 367px;top: 62px; opacity: 0.75;" src="./assets/svg/teamBtn.svg">
-            <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg" onclick="switchPage('main', 'leaderboard')">
+            <img id="indexLbBtn" width="329" height="52" style="position: absolute;left: 556px;top: 62px; opacity: 0.75;" src="./assets/svg/leaderboardBtn.svg" onclick="switchPage('main', 'leaderboard');resize();">
             <img id="indexGameBtn" width="129" height="52" style="position: absolute;left: 953px;top: 62px; opacity: 0.75;" src="./assets/svg/gameBtn.svg" onclick="switchPage('main', 'game')">
         </div>
     </div>
@@ -363,11 +363,20 @@ function resize() {
     // LEADERBOARD //
     dynamic_imgSize("lbWindow", 732, 596, 354, 201, size);
     dynamic_imgSize("lbText", 601, 101, 420, 92, size);
-    dynamic_imgSize("lbEntry1Box", 526, 56, 436, 240, size);
-    dynamic_divSize("lbEntry1BoxName", 373, 21, 462, 257, size);
-    dynamic_TextSizeByID("lbEntry1BoxName", 20, size);
-    dynamic_divSize("lbEntry1BoxScore", 60, 21, 885, 257, size);
-    dynamic_TextSizeByID("lbEntry1BoxScore", 20, size);
+    for (i=0; i<=6; i++) {
+        boxTop = 240 + i * 78;
+        boxNameTop = 257 + i * 78;
+        boxScoreTop = 257 + i * 78;
+        try {
+            dynamic_imgSize("lbEntry" + i + "Box", 526, 56, 436, boxTop, size);
+        } catch (error) {
+            break;
+        }
+        dynamic_divSize("lbEntry" + i + "BoxName", 373, 21, 462, boxNameTop, size);
+        dynamic_TextSizeByID("lbEntry" + i + "BoxName", 20, size);
+        dynamic_divSize("lbEntry" + i + "BoxScore", 60, 21, 885, boxScoreTop, size);
+        dynamic_TextSizeByID("lbEntry" + i + "BoxScore", 20, size);
+    }
 
     // GAME //
     dynamic_imgSize("gameWindow", 1280, 546, 81, 201, size);
